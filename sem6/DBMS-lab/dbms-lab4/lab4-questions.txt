@@ -1,0 +1,23 @@
+1. Display empname, hiredate, date of next fri after hiredate, 6 months before and after hiredate. 
+2.Display empname, hiredate, of all emp. Hiredate should appear as '17th NOV 1981'
+3. Display the empname with initial captilized in dept 10 and sal<1600. 
+
+4.write a query to display empname, deptno, and deptname for all employees.
+
+5.create a unique listing of all jobs that are in dept 10.
+
+6.Write a query to display empname, deptname, and location for all employees who earns a comission.
+
+7. Write a query to display the name,job dept no and deptname for all employees who work in DALLAS. 
+
+8.Display all employees whose salary is between 1000 and 1500;
+
+9. Display the ename, sal and manager no. for all employees whose manager empno is 7902,7500,7788.
+
+10. Display the emp name, the no of weeks employed for all employees in dept 10. 
+
+11.Describe sal table and retrieve all rows of sal table 
+
+12. Display the emp name, salary with their salary grade. 
+
+

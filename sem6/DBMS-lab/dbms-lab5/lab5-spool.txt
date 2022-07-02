@@ -1,0 +1,223 @@
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO               
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------               
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20               
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30               
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30               
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20               
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30               
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30               
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10               
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20               
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10               
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30               
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20               
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30               
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20               
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10               
+
+14 rows selected.
+
+SQL> create table dept_07(dept_id number(7) primary key, name varchar2(25) not null);
+
+Table created.
+
+
+SQL> create table emp_07 (
+  2  id number(7),
+  3  first_name varchar(25) not null,
+  4  last_name varchar(25) not null,
+  5  dept_id number(7),
+  6  constraint pk primary key(id),
+  7  constraint fk foreign key(dept_id) references dept_07(dept_id));
+
+Table created.
+
+SQL> insert into dept_07 values(&dept_id,'&name');
+Enter value for dept_id: 10
+Enter value for name: SALES
+old   1: insert into dept_07 values(&dept_id,'&name')
+new   1: insert into dept_07 values(10,'SALES')
+
+1 row created.
+
+SQL> insert into dept_07 values(&dept_id,'&name');
+Enter value for dept_id: 20
+Enter value for name: PRODUCTION
+old   1: insert into dept_07 values(&dept_id,'&name')
+new   1: insert into dept_07 values(20,'PRODUCTION')
+
+1 row created.
+
+SQL> insert into dept_07 values(&dept_id,'&name');
+Enter value for dept_id: 30
+Enter value for name: ACCOUNTING
+old   1: insert into dept_07 values(&dept_id,'&name')
+new   1: insert into dept_07 values(30,'ACCOUNTING')
+
+1 row created.
+
+SQL> insert into dept_07 values(&dept_id,'&name');
+Enter value for dept_id: 40
+Enter value for name: PURCHASE
+old   1: insert into dept_07 values(&dept_id,'&name')
+new   1: insert into dept_07 values(40,'PURCHASE')
+
+1 row created.
+
+SQL> select * from dept_07;
+
+   DEPT_ID NAME                                                                                     
+---------- -------------------------                                                                
+        10 SALES                                                                                    
+        20 PRODUCTION                                                                               
+        30 ACCOUNTING                                                                               
+        40 PURCHASE                                                                                 
+
+SQL> 
+SQL> insert into emp_07 values(&id,'&first_name','&last_name',&dept_id);
+Enter value for id: 1
+Enter value for first_name: RALPH
+Enter value for last_name: PATEL
+Enter value for dept_id: 10
+old   1: insert into emp_07 values(&id,'&first_name','&last_name',&dept_id)
+new   1: insert into emp_07 values(1,'RALPH','PATEL',10)
+
+1 row created.
+
+SQL> insert into emp_07(&id,'&first_name','&last_name',&dept_id);
+Enter value for id: 
+Enter value for first_name: old   1: insert into emp_07(&id,'&first_name','&last_name',&dept_id)
+new   1: 
+ERROR:
+ORA-24373: invalid length specified for statement 
+
+
+
+SQL> select * from emp_07;
+
+        ID FIRST_NAME                LAST_NAME                    DEPT_ID                           
+---------- ------------------------- ------------------------- ----------                           
+         1 RALPH                     PATEL                             10                           
+
+SQL> insert into emp_07(&id,'&first_name','&last_name',&dept_id);
+Enter value for id: 2
+Enter value for first_name: BETTY
+Enter value for last_name: DANS
+Enter value for dept_id: 20
+old   1: insert into emp_07(&id,'&first_name','&last_name',&dept_id)
+new   1: insert into emp_07(2,'BETTY','DANS',20)
+insert into emp_07(2,'BETTY','DANS',20)
+                   *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> insert into emp_07 values(&id,'&first_name','&last_name',&dept_id);
+Enter value for id: 2
+Enter value for first_name: BETTY
+Enter value for last_name: DANS
+Enter value for dept_id: 20
+old   1: insert into emp_07 values(&id,'&first_name','&last_name',&dept_id)
+new   1: insert into emp_07 values(2,'BETTY','DANS',20)
+
+1 row created.
+
+SQL> insert into emp_07 values(&id,'&first_name','&last_name',&dept_id);
+Enter value for id: 3
+Enter value for first_name: BEN
+Enter value for last_name: NEWMAN
+Enter value for dept_id: 20
+old   1: insert into emp_07 values(&id,'&first_name','&last_name',&dept_id)
+new   1: insert into emp_07 values(3,'BEN','NEWMAN',20)
+
+1 row created.
+
+SQL> insert into emp_07 values(&id,'&first_name','&last_name',&dept_id);
+Enter value for id: 4
+Enter value for first_name: AUDRY
+Enter value for last_name: ROPEBURN
+Enter value for dept_id: 10
+old   1: insert into emp_07 values(&id,'&first_name','&last_name',&dept_id)
+new   1: insert into emp_07 values(4,'AUDRY','ROPEBURN',10)
+
+1 row created.
+
+SQL> alter table emp_07 dept_id=30 where id=2;
+alter table emp_07 dept_id=30 where id=2
+                   *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> update emp_07 set dept_id=20 where id=1;
+
+1 row updated.
+
+SQL> select * from emp_07;
+
+        ID FIRST_NAME                LAST_NAME                    DEPT_ID                           
+---------- ------------------------- ------------------------- ----------                           
+         1 RALPH                     PATEL                             20                           
+         2 BETTY                     DANS                              20                           
+         3 BEN                       NEWMAN                            20                           
+         4 AUDRY                     ROPEBURN                          10                           
+
+SQL> update emp_07 set dept_id=10 where id=1;
+
+1 row updated.
+
+SQL>  update emp_07 set dept_id=30 where id=2;
+
+1 row updated.
+
+SQL> select * from emp_07;
+
+        ID FIRST_NAME                LAST_NAME                    DEPT_ID                           
+---------- ------------------------- ------------------------- ----------                           
+         1 RALPH                     PATEL                             10                           
+         2 BETTY                     DANS                              30                           
+         3 BEN                       NEWMAN                            20                           
+         4 AUDRY                     ROPEBURN                          10                           
+
+
+SQL> update emp_07 set last_name='KINGSLEY' where id=3;
+
+1 row updated.
+
+SQL> select * from emp_07;
+
+        ID FIRST_NAME                LAST_NAME                    DEPT_ID                           
+---------- ------------------------- ------------------------- ----------                           
+         1 RALPH                     PATEL                             10                           
+         2 BETTY                     DANS                              30                           
+         3 BEN                       KINGSLEY                          20                           
+         4 AUDRY                     ROPEBURN                          10                           
+
+SQL>  insert into dept_07 values(&dept_id,'&name');
+Enter value for dept_id: 15
+Enter value for name: system
+old   1:  insert into dept_07 values(&dept_id,'&name')
+new   1:  insert into dept_07 values(15,'system')
+
+1 row created.
+
+SQL> select * from dept_07;
+
+   DEPT_ID NAME                                                                                     
+---------- -------------------------                                                                
+        10 SALES                                                                                    
+        20 PRODUCTION                                                                               
+        30 ACCOUNTING                                                                               
+        40 PURCHASE                                                                                 
+        15 system                                                                                   
+
+SQL> update emp_07 set dept_id=60 where id=2;
+update emp_07 set dept_id=60 where id=2
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOTT.FK) violated - parent key not found 
+
+
+SQL> spool off;

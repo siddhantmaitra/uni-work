@@ -1,0 +1,411 @@
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO               
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------               
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20               
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30               
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30               
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20               
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30               
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30               
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10               
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20               
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10               
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30               
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20               
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30               
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20               
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10               
+
+14 rows selected.
+
+SQL> select ename,hiredate,next_day(hiredate,'friday') as nextfri, add_months(hiredate,'6') as sixafter, add_months(hiredate,'-6') as sixbefore from emp;
+
+ENAME      HIREDATE  NEXTFRI   SIXAFTER  SIXBEFORE                                                  
+---------- --------- --------- --------- ---------                                                  
+SMITH      17-DEC-80 19-DEC-80 17-JUN-81 17-JUN-80                                                  
+ALLEN      20-FEB-81 27-FEB-81 20-AUG-81 20-AUG-80                                                  
+WARD       22-FEB-81 27-FEB-81 22-AUG-81 22-AUG-80                                                  
+JONES      02-APR-81 03-APR-81 02-OCT-81 02-OCT-80                                                  
+MARTIN     28-SEP-81 02-OCT-81 28-MAR-82 28-MAR-81                                                  
+BLAKE      01-MAY-81 08-MAY-81 01-NOV-81 01-NOV-80                                                  
+CLARK      09-JUN-81 12-JUN-81 09-DEC-81 09-DEC-80                                                  
+SCOTT      19-APR-87 24-APR-87 19-OCT-87 19-OCT-86                                                  
+KING       17-NOV-81 20-NOV-81 17-MAY-82 17-MAY-81                                                  
+TURNER     08-SEP-81 11-SEP-81 08-MAR-82 08-MAR-81                                                  
+ADAMS      23-MAY-87 29-MAY-87 23-NOV-87 23-NOV-86                                                  
+JAMES      03-DEC-81 04-DEC-81 03-JUN-82 03-JUN-81                                                  
+FORD       03-DEC-81 04-DEC-81 03-JUN-82 03-JUN-81                                                  
+MILLER     23-JAN-82 29-JAN-82 23-JUL-82 23-JUL-81                                                  
+
+14 rows selected.
+
+
+
+SQL> select ename, to_char(hiredate,'DDth MON YYYY') as hiredate from emp;
+
+ENAME      HIREDATE                                                                                 
+---------- -------------                                                                            
+SMITH      17TH DEC 1980                                                                            
+ALLEN      20TH FEB 1981                                                                            
+WARD       22ND FEB 1981                                                                            
+JONES      02ND APR 1981                                                                            
+MARTIN     28TH SEP 1981                                                                            
+BLAKE      01ST MAY 1981                                                                            
+CLARK      09TH JUN 1981                                                                            
+SCOTT      19TH APR 1987                                                                            
+KING       17TH NOV 1981                                                                            
+TURNER     08TH SEP 1981                                                                            
+ADAMS      23RD MAY 1987                                                                            
+JAMES      03RD DEC 1981                                                                            
+FORD       03RD DEC 1981                                                                            
+MILLER     23RD JAN 1982                                                                            
+
+14 rows selected.
+
+SQL> select ename, to_char(hiredate,'ddth mon yyyy') as hire from emp;
+
+ENAME      HIRE                                                                                     
+---------- -------------                                                                            
+SMITH      17th dec 1980                                                                            
+ALLEN      20th feb 1981                                                                            
+WARD       22nd feb 1981                                                                            
+JONES      02nd apr 1981                                                                            
+MARTIN     28th sep 1981                                                                            
+BLAKE      01st may 1981                                                                            
+CLARK      09th jun 1981                                                                            
+SCOTT      19th apr 1987                                                                            
+KING       17th nov 1981                                                                            
+TURNER     08th sep 1981                                                                            
+ADAMS      23rd may 1987                                                                            
+JAMES      03rd dec 1981                                                                            
+FORD       03rd dec 1981                                                                            
+MILLER     23rd jan 1982                                                                            
+
+14 rows selected.
+
+SQL> select ename, to_char(hiredate,'ddth MON YYYY') as hiredt from emp;
+
+ENAME      HIREDT                                                                                   
+---------- -------------                                                                            
+SMITH      17th DEC 1980                                                                            
+ALLEN      20th FEB 1981                                                                            
+WARD       22nd FEB 1981                                                                            
+JONES      02nd APR 1981                                                                            
+MARTIN     28th SEP 1981                                                                            
+BLAKE      01st MAY 1981                                                                            
+CLARK      09th JUN 1981                                                                            
+SCOTT      19th APR 1987                                                                            
+KING       17th NOV 1981                                                                            
+TURNER     08th SEP 1981                                                                            
+ADAMS      23rd MAY 1987                                                                            
+JAMES      03rd DEC 1981                                                                            
+FORD       03rd DEC 1981                                                                            
+MILLER     23rd JAN 1982                                                                            
+
+14 rows selected.
+
+
+SQL>  select ename, to_char(hiredate,'ddth-MON-YYYY') as hiredt from emp;
+
+ENAME      HIREDT                                                                                   
+---------- -------------                                                                            
+SMITH      17th-DEC-1980                                                                            
+ALLEN      20th-FEB-1981                                                                            
+WARD       22nd-FEB-1981                                                                            
+JONES      02nd-APR-1981                                                                            
+MARTIN     28th-SEP-1981                                                                            
+BLAKE      01st-MAY-1981                                                                            
+CLARK      09th-JUN-1981                                                                            
+SCOTT      19th-APR-1987                                                                            
+KING       17th-NOV-1981                                                                            
+TURNER     08th-SEP-1981                                                                            
+ADAMS      23rd-MAY-1987                                                                            
+JAMES      03rd-DEC-1981                                                                            
+FORD       03rd-DEC-1981                                                                            
+MILLER     23rd-JAN-1982                                                                            
+
+14 rows selected.
+
+
+SQL> select * from emp where sal<1600;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO               
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------               
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20               
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30               
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30               
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30               
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20               
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30               
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10               
+
+7 rows selected.
+
+SQL> select initcap(ename) as employee,deptno from emp where deptno=10 and sal<1600;
+
+EMPLOYEE       DEPTNO                                                                               
+---------- ----------                                                                               
+Miller             10                                                                               
+
+SQL> desc dept;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DEPTNO                                                NOT NULL NUMBER(2)
+ DNAME                                                          VARCHAR2(14)
+ LOC                                                            VARCHAR2(13)
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC                                                                       
+---------- -------------- -------------                                                             
+        10 ACCOUNTING     NEW YORK                                                                  
+        20 RESEARCH       DALLAS                                                                    
+        30 SALES          CHICAGO                                                                   
+        40 OPERATIONS     BOSTON                                                                    
+
+
+
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC                                                                       
+---------- -------------- -------------                                                             
+        10 ACCOUNTING     NEW YORK                                                                  
+        20 RESEARCH       DALLAS                                                                    
+        30 SALES          CHICAGO                                                                   
+        40 OPERATIONS     BOSTON                                                                    
+
+SQL> select ename,emp.deptno,dname from emp,dept where emp.deptno=dept.deptno;
+
+ENAME          DEPTNO DNAME                                                                         
+---------- ---------- --------------                                                                
+SMITH              20 RESEARCH                                                                      
+ALLEN              30 SALES                                                                         
+WARD               30 SALES                                                                         
+JONES              20 RESEARCH                                                                      
+MARTIN             30 SALES                                                                         
+BLAKE              30 SALES                                                                         
+CLARK              10 ACCOUNTING                                                                    
+SCOTT              20 RESEARCH                                                                      
+KING               10 ACCOUNTING                                                                    
+TURNER             30 SALES                                                                         
+ADAMS              20 RESEARCH                                                                      
+JAMES              30 SALES                                                                         
+FORD               20 RESEARCH                                                                      
+MILLER             10 ACCOUNTING                                                                    
+
+14 rows selected.
+
+SQL> select unique(job) from emp;
+
+JOB                                                                                                 
+---------                                                                                           
+CLERK                                                                                               
+SALESMAN                                                                                            
+PRESIDENT                                                                                           
+MANAGER                                                                                             
+ANALYST                                                                                             
+
+SQL> select unique(job) from emp where deptno=10;
+
+JOB                                                                                                 
+---------                                                                                           
+CLERK                                                                                               
+PRESIDENT                                                                                           
+MANAGER                                                                                             
+
+
+
+SQL> select ename,dname,loc from emp,dept where comm is not null;
+
+ENAME      DNAME          LOC                                                                       
+---------- -------------- -------------                                                             
+ALLEN      ACCOUNTING     NEW YORK                                                                  
+ALLEN      RESEARCH       DALLAS                                                                    
+ALLEN      SALES          CHICAGO                                                                   
+ALLEN      OPERATIONS     BOSTON                                                                    
+WARD       ACCOUNTING     NEW YORK                                                                  
+WARD       RESEARCH       DALLAS                                                                    
+WARD       SALES          CHICAGO                                                                   
+WARD       OPERATIONS     BOSTON                                                                    
+MARTIN     ACCOUNTING     NEW YORK                                                                  
+MARTIN     RESEARCH       DALLAS                                                                    
+MARTIN     SALES          CHICAGO                                                                   
+MARTIN     OPERATIONS     BOSTON                                                                    
+TURNER     ACCOUNTING     NEW YORK                                                                  
+TURNER     RESEARCH       DALLAS                                                                    
+TURNER     SALES          CHICAGO                                                                   
+TURNER     OPERATIONS     BOSTON                                                                    
+
+16 rows selected.
+
+
+
+SQL> select empno,ename,dname,loc from emp,dept where emp.deptno=dept.deptno and comm is not null;
+
+     EMPNO ENAME      DNAME          LOC                                                            
+---------- ---------- -------------- -------------                                                  
+      7844 TURNER     SALES          CHICAGO                                                        
+      7654 MARTIN     SALES          CHICAGO                                                        
+      7521 WARD       SALES          CHICAGO                                                        
+      7499 ALLEN      SALES          CHICAGO                                                        
+
+
+SQL> select ename, job, emp.deptno,dname,loc from emp,dept where emp.deptno=dept.deptno and loc='DALLAS';
+
+ENAME      JOB           DEPTNO DNAME          LOC                                                  
+---------- --------- ---------- -------------- -------------                                        
+SMITH      CLERK             20 RESEARCH       DALLAS                                               
+JONES      MANAGER           20 RESEARCH       DALLAS                                               
+SCOTT      ANALYST           20 RESEARCH       DALLAS                                               
+ADAMS      CLERK             20 RESEARCH       DALLAS                                               
+FORD       ANALYST           20 RESEARCH       DALLAS                                               
+
+
+SQL> select empno, ename from emp where sal>=1000 and sal<=1500;
+
+     EMPNO ENAME                                                                                    
+---------- ----------                                                                               
+      7521 WARD                                                                                     
+      7654 MARTIN                                                                                   
+      7844 TURNER                                                                                   
+      7876 ADAMS                                                                                    
+      7934 MILLER                                                                                   
+
+SQL> select empno, ename from emp where sal IN(1000,1500);
+
+     EMPNO ENAME                                                                                    
+---------- ----------                                                                               
+      7844 TURNER                                                                                   
+
+
+SQL> select ename,sal,mgr from emp where mgr IN(7902,7500,7788);
+
+ENAME             SAL        MGR                                                                    
+---------- ---------- ----------                                                                    
+SMITH             800       7902                                                                    
+ADAMS            1100       7788                                                                    
+
+SQL> select sysdate from dual;
+
+SYSDATE                                                                                             
+---------                                                                                           
+06-APR-22                                                                                           
+
+SQL> select sysdate from emp;
+
+SYSDATE                                                                                             
+---------                                                                                           
+06-APR-22                                                                                           
+06-APR-22                                                                                           
+06-APR-22                                                                                           
+06-APR-22                                                                                           
+06-APR-22                                                                                           
+06-APR-22                                                                                           
+06-APR-22                                                                                           
+06-APR-22                                                                                           
+06-APR-22                                                                                           
+06-APR-22                                                                                           
+06-APR-22                                                                                           
+06-APR-22                                                                                           
+06-APR-22                                                                                           
+06-APR-22                                                                                           
+
+14 rows selected.
+
+SQL> select (sysdate-hiredate) from emp;
+
+(SYSDATE-HIREDATE)                                                                                  
+------------------                                                                                  
+         15085.653                                                                                  
+         15020.653                                                                                  
+         15018.653                                                                                  
+         14979.653                                                                                  
+         14800.653                                                                                  
+         14950.653                                                                                  
+         14911.653                                                                                  
+         12771.653                                                                                  
+         14750.653                                                                                  
+         14820.653                                                                                  
+         12737.653                                                                                  
+         14734.653                                                                                  
+         14734.653                                                                                  
+         14683.653                                                                                  
+
+14 rows selected.
+
+
+SQL> desc tab;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ TNAME                                                 NOT NULL VARCHAR2(30)
+ TABTYPE                                                        VARCHAR2(7)
+ CLUSTERID                                                      NUMBER
+
+SQL> desc SALGRADE;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ GRADE                                                          NUMBER
+ LOSAL                                                          NUMBER
+ HISAL                                                          NUMBER
+
+
+SQL> select * from salgrade;
+
+     GRADE      LOSAL      HISAL                                                                    
+---------- ---------- ----------                                                                    
+         1        700       1200                                                                    
+         2       1201       1400                                                                    
+         3       1401       2000                                                                    
+         4       2001       3000                                                                    
+         5       3001       9999                                                                    
+
+
+
+
+SQL> select ename, emp.sal, grade from emp,salgrade where sal between losal and hisal;
+
+ENAME             SAL      GRADE                                                                    
+---------- ---------- ----------                                                                    
+SMITH             800          1                                                                    
+JAMES             950          1                                                                    
+ADAMS            1100          1                                                                    
+WARD             1250          2                                                                    
+MARTIN           1250          2                                                                    
+MILLER           1300          2                                                                    
+TURNER           1500          3                                                                    
+ALLEN            1600          3                                                                    
+CLARK            2450          4                                                                    
+BLAKE            2850          4                                                                    
+JONES            2975          4                                                                    
+SCOTT            3000          4                                                                    
+FORD             3000          4                                                                    
+KING             5000          5                                                                    
+
+14 rows selected.
+
+SQL> select ename, round((sysdate-hiredate)/7) as wks from emp;
+
+ENAME             WKS                                                                               
+---------- ----------                                                                               
+SMITH            2155                                                                               
+ALLEN            2146                                                                               
+WARD             2146                                                                               
+JONES            2140                                                                               
+MARTIN           2114                                                                               
+BLAKE            2136                                                                               
+CLARK            2130                                                                               
+SCOTT            1825                                                                               
+KING             2107                                                                               
+TURNER           2117                                                                               
+ADAMS            1820                                                                               
+JAMES            2105                                                                               
+FORD             2105                                                                               
+MILLER           2098                                                                               
+
+14 rows selected.
+
+SQL> spooloff
+SP2-0042: unknown command "spooloff" - rest of line ignored.
+SQL> spool off

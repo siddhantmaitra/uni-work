@@ -1,0 +1,17 @@
+Q1 select to_char(sysdate, 'HH24:MI:SS') from dual;
+
+select empno,ename,round(sal+(sal*15/100)) newsal from emp;
+
+3b select empno,ename,sal,round(sal+(sal*15/100)) as newsal,(round(sal+(sal*15/100))-sal) as increase from emp;
+
+3a  select empno,ename from emp where (sal*15/100)>200;
+
+4.a. select concat(empno,ename) from emp;
+
+4b.select ename || ' ' || job from emp;
+
+4c. select ename, length(ename) as lngth from emp;
+
+4d. 
+
+select length(ename),ltrim(ename,'S'),rtrim(ename,'T') from emp;

@@ -1,0 +1,451 @@
+SQL> select sysdate from dual;
+
+SYSDATE                                                                                             
+---------                                                                                           
+16-MAR-22                                                                                           
+
+SQL> select 2*3 from dual;
+
+       2*3                                                                                          
+----------                                                                                          
+         6                                                                                          
+
+SQL> select * from dual;
+
+D                                                                                                   
+-                                                                                                   
+X                                                                                                   
+
+
+SQL> select to_char(sysdate,'dd-mm-yyy HH24:MM:SS') from dual;
+
+TO_CHAR(SYSDATE                                                                                 
+------------------                                                                                  
+16-03-022 14:03:32                                                                                  
+
+
+SQL> select to_char(sysdate, 'HH24:MI:SS') from dual;
+
+TO_CHAR(                                                                                            
+--------                                                                                            
+14:52:04                                                                                            
+
+SQL> select empno, empname,floor(sal+(sal*15/100)) newsal from emp;
+select empno, empname,floor(sal+(sal*15/100)) newsal from emp
+              *
+ERROR at line 1:
+ORA-00904: "EMPNAME": invalid identifier 
+
+
+SQL> select * from emp
+  2  
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO               
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------               
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20               
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30               
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30               
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20               
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30               
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30               
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10               
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20               
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10               
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30               
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20               
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30               
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20               
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10               
+
+14 rows selected.
+
+SQL> select empno,ename,floor(sal+(sal*15/100)) newsal from emp;
+
+     EMPNO ENAME          NEWSAL                                                                    
+---------- ---------- ----------                                                                    
+      7369 SMITH             920                                                                    
+      7499 ALLEN            1840                                                                    
+      7521 WARD             1437                                                                    
+      7566 JONES            3421                                                                    
+      7654 MARTIN           1437                                                                    
+      7698 BLAKE            3277                                                                    
+      7782 CLARK            2817                                                                    
+      7788 SCOTT            3450                                                                    
+      7839 KING             5750                                                                    
+      7844 TURNER           1725                                                                    
+      7876 ADAMS            1265                                                                    
+      7900 JAMES            1092                                                                    
+      7902 FORD             3450                                                                    
+      7934 MILLER           1495                                                                    
+
+14 rows selected.
+
+SQL> select empno,ename,round(sal+(sal*15/100)) newsal from emp;
+
+     EMPNO ENAME          NEWSAL                                                                    
+---------- ---------- ----------                                                                    
+      7369 SMITH             920                                                                    
+      7499 ALLEN            1840                                                                    
+      7521 WARD             1438                                                                    
+      7566 JONES            3421                                                                    
+      7654 MARTIN           1438                                                                    
+      7698 BLAKE            3278                                                                    
+      7782 CLARK            2818                                                                    
+      7788 SCOTT            3450                                                                    
+      7839 KING             5750                                                                    
+      7844 TURNER           1725                                                                    
+      7876 ADAMS            1265                                                                    
+      7900 JAMES            1093                                                                    
+      7902 FORD             3450                                                                    
+      7934 MILLER           1495                                                                    
+
+14 rows selected.
+
+
+SQL> select empno,ename,sal,round(sal+(sal*15/100)) as newsal,(round(sal+(sal*15/100))-sal) as increase from emp;
+
+     EMPNO ENAME             SAL     NEWSAL   INCREASE                                              
+---------- ---------- ---------- ---------- ----------                                              
+      7369 SMITH             800        920        120                                              
+      7499 ALLEN            1600       1840        240                                              
+      7521 WARD             1250       1438        188                                              
+      7566 JONES            2975       3421        446                                              
+      7654 MARTIN           1250       1438        188                                              
+      7698 BLAKE            2850       3278        428                                              
+      7782 CLARK            2450       2818        368                                              
+      7788 SCOTT            3000       3450        450                                              
+      7839 KING             5000       5750        750                                              
+      7844 TURNER           1500       1725        225                                              
+      7876 ADAMS            1100       1265        165                                              
+      7900 JAMES             950       1093        143                                              
+      7902 FORD             3000       3450        450                                              
+      7934 MILLER           1300       1495        195                                              
+
+14 rows selected.
+
+SQL>  select empno,ename from emp where (sal*15/100)>200;
+
+     EMPNO ENAME                                                                                    
+---------- ----------                                                                               
+      7499 ALLEN                                                                                    
+      7566 JONES                                                                                    
+      7698 BLAKE                                                                                    
+      7782 CLARK                                                                                    
+      7788 SCOTT                                                                                    
+      7839 KING                                                                                     
+      7844 TURNER                                                                                   
+      7902 FORD                                                                                     
+
+8 rows selected.
+
+SQL> select concat(empno,ename) from emp;
+
+CONCAT(EMPNO,ENAME)                                                                                 
+--------------------------------------------------                                                  
+7369SMITH                                                                                           
+7499ALLEN                                                                                           
+7521WARD                                                                                            
+7566JONES                                                                                           
+7654MARTIN                                                                                          
+7698BLAKE                                                                                           
+7782CLARK                                                                                           
+7788SCOTT                                                                                           
+7839KING                                                                                            
+7844TURNER                                                                                          
+7876ADAMS                                                                                           
+7900JAMES                                                                                           
+7902FORD                                                                                            
+7934MILLER                                                                                          
+
+14 rows selected.
+
+SQL> select ename || ' ' || job from emp;
+
+ENAME||''||JOB                                                                                      
+--------------------                                                                                
+SMITH CLERK                                                                                         
+ALLEN SALESMAN                                                                                      
+WARD SALESMAN                                                                                       
+JONES MANAGER                                                                                       
+MARTIN SALESMAN                                                                                     
+BLAKE MANAGER                                                                                       
+CLARK MANAGER                                                                                       
+SCOTT ANALYST                                                                                       
+KING PRESIDENT                                                                                      
+TURNER SALESMAN                                                                                     
+ADAMS CLERK                                                                                         
+JAMES CLERK                                                                                         
+FORD ANALYST                                                                                        
+MILLER CLERK                                                                                        
+
+14 rows selected.
+
+SQL> select ename, length(ename) as lngth from emp;
+
+ENAME           LNGTH                                                                               
+---------- ----------                                                                               
+SMITH               5                                                                               
+ALLEN               5                                                                               
+WARD                4                                                                               
+JONES               5                                                                               
+MARTIN              6                                                                               
+BLAKE               5                                                                               
+CLARK               5                                                                               
+SCOTT               5                                                                               
+KING                4                                                                               
+TURNER              6                                                                               
+ADAMS               5                                                                               
+JAMES               5                                                                               
+FORD                4                                                                               
+MILLER              6                                                                               
+
+14 rows selected.
+
+SQL> 
+SQL> 
+SQL> select length(ename),ltrim(ename,'S'),rtrim(ename,'T') from emp;
+
+LENGTH(ENAME) LTRIM(ENAM RTRIM(ENAM                                                                 
+------------- ---------- ----------                                                                 
+            5 MITH       SMITH                                                                      
+            5 ALLEN      ALLEN                                                                      
+            4 WARD       WARD                                                                       
+            5 JONES      JONES                                                                      
+            6 MARTIN     MARTIN                                                                     
+            5 BLAKE      BLAKE                                                                      
+            5 CLARK      CLARK                                                                      
+            5 COTT       SCO                                                                        
+            4 KING       KING                                                                       
+            6 TURNER     TURNER                                                                     
+            5 ADAMS      ADAMS                                                                      
+            5 JAMES      JAMES                                                                      
+            4 FORD       FORD                                                                       
+            6 MILLER     MILLER                                                                     
+
+14 rows selected.
+
+SQL> select initcap(ename) from emp;
+
+INITCAP(EN                                                                                          
+----------                                                                                          
+Smith                                                                                               
+Allen                                                                                               
+Ward                                                                                                
+Jones                                                                                               
+Martin                                                                                              
+Blake                                                                                               
+Clark                                                                                               
+Scott                                                                                               
+King                                                                                                
+Turner                                                                                              
+Adams                                                                                               
+James                                                                                               
+Ford                                                                                                
+Miller                                                                                              
+
+14 rows selected.
+
+
+
+SQL> select upper(ename) as capson,lower(ename) as capsoff from emp;
+
+CAPSON     CAPSOFF                                                                                  
+---------- ----------                                                                               
+SMITH      smith                                                                                    
+ALLEN      allen                                                                                    
+WARD       ward                                                                                     
+JONES      jones                                                                                    
+MARTIN     martin                                                                                   
+BLAKE      blake                                                                                    
+CLARK      clark                                                                                    
+SCOTT      scott                                                                                    
+KING       king                                                                                     
+TURNER     turner                                                                                   
+ADAMS      adams                                                                                    
+JAMES      james                                                                                    
+FORD       ford                                                                                     
+MILLER     miller                                                                                   
+
+14 rows selected.
+
+
+
+SQL> select instr(ename, 'LL') from emp;
+
+INSTR(ENAME,'LL')                                                                                   
+-----------------                                                                                   
+                0                                                                                   
+                2                                                                                   
+                0                                                                                   
+                0                                                                                   
+                0                                                                                   
+                0                                                                                   
+                0                                                                                   
+                0                                                                                   
+                0                                                                                   
+                0                                                                                   
+                0                                                                                   
+                0                                                                                   
+                0                                                                                   
+                3                                                                                   
+
+14 rows selected.
+
+
+
+SQL> select substr(ename,1,4) from emp;
+
+SUBS                                                                                                
+----                                                                                                
+SMIT                                                                                                
+ALLE                                                                                                
+WARD                                                                                                
+JONE                                                                                                
+MART                                                                                                
+BLAK                                                                                                
+CLAR                                                                                                
+SCOT                                                                                                
+KING                                                                                                
+TURN                                                                                                
+ADAM                                                                                                
+JAME                                                                                                
+FORD                                                                                                
+MILL                                                                                                
+
+14 rows selected.
+
+SQL> select lpad(ename,2) from emp;
+
+LP                                                                                                  
+--                                                                                                  
+SM                                                                                                  
+AL                                                                                                  
+WA                                                                                                  
+JO                                                                                                  
+MA                                                                                                  
+BL                                                                                                  
+CL                                                                                                  
+SC                                                                                                  
+KI                                                                                                  
+TU                                                                                                  
+AD                                                                                                  
+JA                                                                                                  
+FO                                                                                                  
+MI                                                                                                  
+
+14 rows selected.
+
+SQL> select lpad(ename,2,3) from emp;
+
+LP                                                                                                  
+--                                                                                                  
+SM                                                                                                  
+AL                                                                                                  
+WA                                                                                                  
+JO                                                                                                  
+MA                                                                                                  
+BL                                                                                                  
+CL                                                                                                  
+SC                                                                                                  
+KI                                                                                                  
+TU                                                                                                  
+AD                                                                                                  
+JA                                                                                                  
+FO                                                                                                  
+MI                                                                                                  
+
+14 rows selected.
+
+SQL> select rpad(ename,3) from emp;
+
+RPA                                                                                                 
+---                                                                                                 
+SMI                                                                                                 
+ALL                                                                                                 
+WAR                                                                                                 
+JON                                                                                                 
+MAR                                                                                                 
+BLA                                                                                                 
+CLA                                                                                                 
+SCO                                                                                                 
+KIN                                                                                                 
+TUR                                                                                                 
+ADA                                                                                                 
+JAM                                                                                                 
+FOR                                                                                                 
+MIL                                                                                                 
+
+14 rows selected.
+
+SQL> select lpad(ename,20,*) from emp;
+select lpad(ename,20,*) from emp
+                     *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> select lpad(ename,20,'*') from emp;
+
+LPAD(ENAME,20,'*')                                                                                  
+--------------------                                                                                
+***************SMITH                                                                                
+***************ALLEN                                                                                
+****************WARD                                                                                
+***************JONES                                                                                
+**************MARTIN                                                                                
+***************BLAKE                                                                                
+***************CLARK                                                                                
+***************SCOTT                                                                                
+****************KING                                                                                
+**************TURNER                                                                                
+***************ADAMS                                                                                
+***************JAMES                                                                                
+****************FORD                                                                                
+**************MILLER                                                                                
+
+14 rows selected.
+
+SQL> select lpad(ename,10,'ss') from emp;
+
+LPAD(ENAME                                                                                          
+----------                                                                                          
+sssssSMITH                                                                                          
+sssssALLEN                                                                                          
+ssssssWARD                                                                                          
+sssssJONES                                                                                          
+ssssMARTIN                                                                                          
+sssssBLAKE                                                                                          
+sssssCLARK                                                                                          
+sssssSCOTT                                                                                          
+ssssssKING                                                                                          
+ssssTURNER                                                                                          
+sssssADAMS                                                                                          
+sssssJAMES                                                                                          
+ssssssFORD                                                                                          
+ssssMILLER                                                                                          
+
+14 rows selected.
+
+SQL> select lpad(ename,10,'x'), rpad(ename,10,'x') from emp;
+
+LPAD(ENAME RPAD(ENAME                                                                               
+---------- ----------                                                                               
+xxxxxSMITH SMITHxxxxx                                                                               
+xxxxxALLEN ALLENxxxxx                                                                               
+xxxxxxWARD WARDxxxxxx                                                                               
+xxxxxJONES JONESxxxxx                                                                               
+xxxxMARTIN MARTINxxxx                                                                               
+xxxxxBLAKE BLAKExxxxx                                                                               
+xxxxxCLARK CLARKxxxxx                                                                               
+xxxxxSCOTT SCOTTxxxxx                                                                               
+xxxxxxKING KINGxxxxxx                                                                               
+xxxxTURNER TURNERxxxx                                                                               
+xxxxxADAMS ADAMSxxxxx                                                                               
+xxxxxJAMES JAMESxxxxx                                                                               
+xxxxxxFORD FORDxxxxxx                                                                               
+xxxxMILLER MILLERxxxx                                                                               
+
+14 rows selected.
+
+SQL> spool off

@@ -1,0 +1,35 @@
+1. Create table emp_nm based on the following table instance (nm is your rollno)
+
+Column name,  ID    , LAST_NAME,   FIRST_NAME, DEPT_ID
+Data Type    Number   varchar2     varchar2    number
+length		7	25		25	7 
+constraint  Primary     Not null    Not null    Foreign Key (dept_id) from dept_nm table
+	      Key
+
+Column name,  DEPT_ID    , NAME,   
+Data Type    Number   	  varchar2     
+length		7		25	
+constraint  Primary     Not null  
+	      Key
+
+DEPT_ID 	NAME
+10		SALES
+20		PRODUCTION
+30		ACCOUNTING
+40		PURCHASE
+
+
+create table dept_id(
+	dept_id number(7)
+
+change lastname of emp 3 
+confirm your changes to the database
+Add new dept to dept table with id 15 and name "system" 
+change the dept_id of emp 30 to 60 
+
+
+
+
+* Approach: 
+Create dept_nm first then create table emp.
+create table $tablename(col name datatype, .... )

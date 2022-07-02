@@ -1,0 +1,26 @@
+Q1. select ename from emp where ename like '_A%';
+
+Q3. select ename from emp where JOB='CLERK' and SAL>'1100';
+
+select * from emp where JOB='CLERK' and SAL>'1100';
+
+Q2. select * from emp where mgr is null; 
+
+
+Q4. select ename,deptno from emp where deptno=10 or deptno=30 order by ename;
+    select ename,deptno from emp where deptno=10 or deptno=30 order by ename desc;
+
+Q5. select ename,sal from emp where sal>1500 and deptno IN(10,30);
+
+Q6. select ename,sal+nvl(comm,0) from emp where sal+nvl(comm,0)>1500 and deptno IN(10,30);
+
+Q7. select ename,hiredate from emp where hiredate>='1-JAN-1982' and hiredate<='31-DEC-1982';
+   select ename,hiredate from emp where hiredate like '%82';
+
+Q8. select ename,hiredate+'365' as confdate from emp;
+
+Q9. select ename,sal,comm from emp where comm is not null order by sal desc;
+
+Q10.  select ename from emp where ename like '%L%L%';
+
+Q11. select ename from emp where sal<nvl(comm,0);
